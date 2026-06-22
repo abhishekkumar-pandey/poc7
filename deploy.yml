@@ -1,0 +1,12 @@
+---
+- name: Deploy Docker Container
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: Remove existing container
+      command: docker rm -f my-app
+      ignore_errors: yes
+
+    - name: Run new container
+      command: docker run -d -p 80:80 --name my-app my-app-image
